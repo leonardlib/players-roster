@@ -25,9 +25,9 @@ class Player(models.Model):
         default=None
     )
 
-    def jersey_name(self):
+    def full_name(self):
         """
-        Get the jersey name from Player
+        Get the full name from Player
         :author: @leonard_lib
         :date: 2020-08-31
         :return: string
