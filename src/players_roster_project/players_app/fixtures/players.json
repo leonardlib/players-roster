@@ -1,0 +1,56 @@
+[
+  {
+    "model": "players_app.team",
+    "pk": 1,
+    "fields": {
+      "name": "L.A. Lakers"
+    }
+  },
+  {
+    "model": "players_app.team",
+    "pk": 2,
+    "fields": {
+      "name": "Chicago Bulls"
+    }
+  },
+  {
+    "model": "players_app.player",
+    "pk": 1,
+    "fields": {
+      "first_name": "LeBron",
+      "last_name": "James",
+      "jersey_number": 23,
+      "team": 1
+    }
+  },
+  {
+    "model": "players_app.player",
+    "pk": 2,
+    "fields": {
+      "first_name": "Anthony",
+      "last_name": "Davis",
+      "jersey_number": 3,
+      "team": 1
+    }
+  },
+  {
+    "model": "players_app.player",
+    "pk": 3,
+    "fields": {
+      "first_name": "Michael",
+      "last_name": "Jordan",
+      "jersey_number": 23,
+      "team": 2
+    }
+  },
+  {
+    "model": "players_app.player",
+    "pk": 4,
+    "fields": {
+      "first_name": "Scottie",
+      "last_name": "Pippen",
+      "jersey_number": 33,
+      "team": 2
+    }
+  }
+]
