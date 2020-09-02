@@ -2,6 +2,8 @@ import graphene
 
 from django import forms
 from graphene_django.forms.mutation import DjangoModelFormMutation
+from graphql_jwt.decorators import login_required
+
 from .schema import TeamType, PlayerType
 from ..models import Team, Player
 
@@ -54,7 +56,7 @@ class CreateOrUpdatePlayerMutation(DjangoModelFormMutation):
     :author: @leonard_lib
     :date: 2020-09-01
     """
-    team = graphene.Field(PlayerType)
+    player = graphene.Field(PlayerType)
 
     class Meta:
         form_class = PlayerForm
@@ -71,6 +73,7 @@ class RemoveTeamMutation(graphene.Mutation):
     class Arguments:
         id = graphene.ID(required=True)
 
+    @login_required
     def mutate(self, info, id):
         team = Team.objects.get(pk=id)
         team.delete()
@@ -88,6 +91,7 @@ class RemovePlayerMutation(graphene.Mutation):
     class Arguments:
         id = graphene.ID(required=True)
 
+    @login_required
     def mutate(self, info, id):
         player = Player.objects.get(pk=id)
         player.delete()

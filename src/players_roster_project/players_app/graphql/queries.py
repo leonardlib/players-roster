@@ -1,6 +1,8 @@
 import graphene
 
 from graphene_django import DjangoListField
+from graphql_jwt.decorators import login_required
+
 from ..graphql.schema import TeamType, PlayerType
 from ..models import Player
 
@@ -22,6 +24,7 @@ class PlayersAppQueries(graphene.ObjectType):
         last_name=graphene.String(required=True)
     )
 
+    @login_required
     def resolve_all_players(self, info):
         """
         Get all players
@@ -32,6 +35,7 @@ class PlayersAppQueries(graphene.ObjectType):
         """
         return Player.objects.select_related('team').all()
 
+    @login_required
     def resolve_all_players_for_team(self, info, team):
         """
         Get all players for a team
@@ -43,6 +47,7 @@ class PlayersAppQueries(graphene.ObjectType):
         """
         return Player.objects.select_related('team').filter(team=team)
 
+    @login_required
     def resolve_player_by_last_name(self, info, last_name):
         """
         Get player by last name

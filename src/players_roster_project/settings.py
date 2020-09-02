@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'players_roster_project.players_app',
+    'players_roster_project.users_app',
     'corsheaders',
     'graphene_django',
 ]
@@ -144,7 +145,17 @@ REST_FRAMEWORK = {
     ]
 }
 
+AUTH_USER_MODEL = 'users_app.User'
+
 GRAPHENE = {
     "SCHEMA": "players_roster_project.schema.schema",
     "SCHEMA_INDENT": 4,
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
