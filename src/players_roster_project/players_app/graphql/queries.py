@@ -1,10 +1,12 @@
 import graphene
+from django_graphene_permissions import permissions_checker
 
 from graphene_django import DjangoListField
 from graphql_jwt.decorators import login_required
 
 from ..graphql.schema import TeamType, PlayerType
 from ..models import Player
+from ..permissions import ListPlayersPermission
 
 
 class PlayersAppQueries(graphene.ObjectType):
@@ -24,7 +26,8 @@ class PlayersAppQueries(graphene.ObjectType):
         last_name=graphene.String(required=True)
     )
 
-    @login_required
+    # @login_required
+    @permissions_checker([ListPlayersPermission])
     def resolve_all_players(self, info):
         """
         Get all players
