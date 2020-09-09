@@ -4,6 +4,12 @@ from django.db import models
 class Team(models.Model):
     name = models.CharField(max_length=100, blank=False)
 
+    class Meta:
+        permissions = [
+            ('list_all_teams', 'Can list all teams'),
+            ('list_team', 'Can list single team'),
+        ]
+
     def __str__(self):
         """
         Get the representational string from Team
